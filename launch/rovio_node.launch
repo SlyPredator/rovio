@@ -2,7 +2,19 @@
 <launch>
   <node pkg="rovio" type="rovio_node" name="rovio" output="screen">
   <param name="filter_config" value="$(find rovio)/cfg/rovio.info"/>
-  <param name="camera0_config" value="$(find rovio)/cfg/euroc_cam0.yaml"/>
-  <param name="camera1_config" value="$(find rovio)/cfg/euroc_cam1.yaml"/>
+  <param name="camera0_config" value="$(find rovio)/cfg/d435i.yaml"/>
+  <remap from="/imu0" to="/camera/imu"/>
+  <remap from="/cam0/image_raw" to="/camera/image_mono"/>
   </node>
+
+
+  <!-- NO IDEA WHY REMAP OF MONO DOESNT WORK AS EXPECTED BUT LET IT BE LIKE THIS -->
+  <group ns="camera">
+  <node pkg="image_proc" type="image_proc" name="image_proc">
+    <remap from="image_raw" to="color/image_raw"/>
+    <remap from="camera_info" to="color/camera_info"/>
+    <remap from="image" to="color/image_mono"/>
+  </node>
+  </group>
+
 </launch>
