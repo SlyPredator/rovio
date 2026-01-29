@@ -4,7 +4,7 @@ Common
 {
 	doVECalibration true;		Should the camera-IMU extrinsics be calibrated online
 	depthType 0;				Type of depth parametrization (0: normal, 1: inverse depth, 2: log, 3: hyperbolic)
-	verbose true;				Is the verbose active
+	verbose false;				Is the verbose active
 }
 
 
